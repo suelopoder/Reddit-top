@@ -1,0 +1,5 @@
+export const LOGIN_STATE = {
+  INIT: 'INIT',
+  REDIRECTING: 'REDIRECTING',
+  LOGGED_IN: 'LOGGED_IN'
+};

@@ -1,32 +1,28 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
-import { setRedditToken, getRedditToken, redirectToLogin } from './helpers';
+import { useRedditLogin } from './useRedditLogin';
+import { LOGIN_STATE } from './constants';
 
-class App extends Component {
-  componentDidMount() {
-    const authorizationCode = new URLSearchParams(window.location.search).get('code');
-    if (authorizationCode) {
-      return fetch(`./reddit_token?code=${authorizationCode}`)
-        .then(res => res.json())
-        .then(res => res.access_token
-          ? setRedditToken(res.access_token)
-          : redirectToLogin())
-        .catch(redirectToLogin);
-    }
+const App = () => {
+  const { loginState } = useRedditLogin();
 
-    const token = getRedditToken();
-    if (!token) {
-      redirectToLogin()
-    }
+  if (loginState === LOGIN_STATE.INIT) {
+    return null;
   }
 
-  render () {
+  if (loginState === LOGIN_STATE.REDIRECTING) {
     return (
       <div className="App">
-        Here will go the app
+        We are redirecting you to the login page
       </div>
     );
   }
+
+  return (
+    <div className="App">
+      Here will go the app
+    </div>
+  );
 }
 
 export default App;
