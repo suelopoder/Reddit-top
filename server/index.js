@@ -13,11 +13,10 @@ if (!redditAppId) {
   process.exit(1);
 }
 
-app.get('/reddit_redirect', async (req, res) => {
-  // TODO validate state matches REDDIT_TEST_CLIENT for security
+app.get('/reddit_token', async (req, res) => {
   const code = req.query.code;
   if (!code) {
-    return res.status(400).send('No code submitted');
+    return res.status(400).send({ error: 'No code submitted' });
   }
 
   try {
@@ -38,12 +37,12 @@ app.get('/reddit_redirect', async (req, res) => {
     const { error } = response.data;
     if (error) {
       console.error('Error response getting access token', error);
-      return res.status(400).send('Invalid code');
+      return res.status(400).send({ error: 'Invalid code' });
     }
     res.send(response.data);
   } catch (error) {
     console.error(error);
-    res.status(400).send('Invalid code');
+    return res.status(400).send({ error: 'Invalid code' });
   }
 });
 
