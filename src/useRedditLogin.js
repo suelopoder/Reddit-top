@@ -1,10 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { setRedditToken, getRedditToken, redirectToLogin } from './helpers';
-import {
-  setRedditToken as setRedditTokenAction,
-  redirectingToLogin,
-} from "./actions";
+import { storeRedditToken, getRedditTokenFromStorage, redirectToLogin } from './helpers';
+import { setRedditToken, redirectingToLogin } from "./actions";
 import API from "./API";
 
 export function useRedditLogin() {
@@ -16,7 +13,8 @@ export function useRedditLogin() {
     if (authorizationCode) {
       API.getAccessToken(authorizationCode)
         .then(accessToken => {
-          setRedditToken(accessToken);
+          storeRedditToken(accessToken);
+          // Remove authorization code from URL for security
           window.location.replace('/');
         })
         .catch(() => {
@@ -26,14 +24,14 @@ export function useRedditLogin() {
       return;
     }
 
-    const token = getRedditToken();
+    const token = getRedditTokenFromStorage();
     if (!token) {
       redirectToLogin();
       dispatch(redirectingToLogin());
       return;
     }
 
-    dispatch(setRedditTokenAction(token));
+    dispatch(setRedditToken(token));
   }, [dispatch]);
 
   return { loginStatus: useSelector(state => state.loginStatus) };

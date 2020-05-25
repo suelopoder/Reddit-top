@@ -6,8 +6,8 @@ const OAUTH_URL = `${REDDIT_BASE_URI}/login/?dest=${encodeURIComponent(REDDIT_AU
 const REDDIT_TOKEN_KEY = 'REDDIT_CLIENT__REDDIT_TOKEN_KEY';
 
 const { location, localStorage } = window;
-export const getRedditToken = () => localStorage.getItem(REDDIT_TOKEN_KEY);
-export const setRedditToken = token => localStorage.setItem(REDDIT_TOKEN_KEY, token);
+export const getRedditTokenFromStorage = () => localStorage.getItem(REDDIT_TOKEN_KEY);
+export const storeRedditToken = token => localStorage.setItem(REDDIT_TOKEN_KEY, token);
 export const redirectToLogin = () => location.replace(OAUTH_URL);
 
 // https://stackoverflow.com/questions/5717093/check-if-a-javascript-string-is-a-url
