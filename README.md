@@ -29,6 +29,7 @@ To run a dev version of the server run `npm run server`. This runs the server wi
 - implement pagination
 - add tests!
 - host the app somewhere
+- refactor common CSS (button, colors, spacing)
 
 ## Objective
 

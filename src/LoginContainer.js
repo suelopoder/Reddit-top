@@ -1,5 +1,4 @@
 import React from 'react';
-import './LoginContainer.css';
 import { useRedditLogin } from './useRedditLogin';
 import { LOGIN_STATE } from './constants';
 
