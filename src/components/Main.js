@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import PostList from './PostList';
 import PostDetail from './PostDetail';
@@ -22,6 +22,7 @@ const MainWrapper = styled.div`
 
 export default function Main() {
   const posts = useSelector(redditPostsSelector);
+  const [dismissed, setDismissed] = useState([]);
   const dispatch = useDispatch();
   const activeId = useSelector(selectActivePost);
   const activePost = activeId && posts.find(item => item.id === activeId);
@@ -29,8 +30,8 @@ export default function Main() {
   return (
     <MainWrapper>
       <PostList
-        posts={posts}
-        onDismiss={console.log}
+        posts={posts.filter(post => dismissed.indexOf(post.id) === -1)}
+        onDismiss={post => setDismissed([...dismissed, post.id])}
         onSelect={post => {
           dispatch(markPostAsSeen(post.id));
           dispatch(selectPost(post.id));
