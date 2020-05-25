@@ -9,6 +9,7 @@ const PostListWrapper = styled.ul`
   margin: 0;
   width: 350px;
   background: black;
+  flex: 1;
   li {
     background: black;
     color: white;
@@ -31,13 +32,17 @@ const PostListWrapper = styled.ul`
       display: flex;
       justify-content: space-between;
       img {
-        widht: 50px;
+        flex: 7;
+        max-height: 150px;
+        margin: auto;
       }
       p {
+        flex: 7;
         align-self: flex-start;
         padding-left: 5px;
       }
       button {
+        flex: 1;
         background: transparent;
         border: 0;
         color: white;
@@ -71,7 +76,7 @@ const PostListWrapper = styled.ul`
   }
 `
 
-export function PostItem({ author, time, imgUrl, title, comments, onDismiss }) {
+export function PostItem({ author, time, imgUrl, title, comments, onDismiss, onSelect }) {
   return (
     <li>
       <header>
@@ -82,7 +87,7 @@ export function PostItem({ author, time, imgUrl, title, comments, onDismiss }) {
       <div className="post-item-content">
         {imgUrl && <img src={imgUrl} alt={title} />}
         <p>{title}</p>
-        <button><FaChevronRight /></button>
+        <button onClick={onSelect}><FaChevronRight /></button>
       </div>
       <footer>
         {onDismiss && (

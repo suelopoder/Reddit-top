@@ -10,18 +10,10 @@ const LoginContainer = ({ children }) => {
   }
 
   if (loginStatus === LOGIN_STATE.REDIRECTING) {
-    return (
-      <div className="LoginContainer">
-        We are redirecting you to the login page
-      </div>
-    );
+    return <h1>You are being redirected to the login page</h1>;
   }
 
-  return (
-    <div className="LoginContainer">
-      {children}
-    </div>
-  );
+  return children;
 }
 
 export default LoginContainer;

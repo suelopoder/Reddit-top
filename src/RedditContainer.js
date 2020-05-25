@@ -1,7 +1,7 @@
 import React from 'react';
 import useRedditData from './useRedditData';
 import Loading from './components/Loading';
-import PostList from './components/PostList';
+import Main from './components/Main';
 import { validURL } from './helpers';
 
 const getImage = item => {
@@ -34,18 +34,14 @@ export function RedditContainer() {
     return null;
   }
 
-  return (
-    <>
-      <PostList
-        posts={data.map(item => ({
-          id: item.id,
-          author: item.author_fullname,
-          time: getCreatedTimeLabel(item),
-          imgUrl: getImage(item),
-          title: item.title,
-          comments: item.num_comments,
-        }))}
-      />
-    </>
-  );
+  return <Main
+    posts={data.map(item => ({
+      id: item.id,
+      author: item.author_fullname,
+      time: getCreatedTimeLabel(item),
+      imgUrl: getImage(item),
+      title: item.title,
+      comments: item.num_comments,
+    }))}
+  />;
 }
