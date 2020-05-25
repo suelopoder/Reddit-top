@@ -5,17 +5,7 @@ import {
   setRedditToken as setRedditTokenAction,
   redirectingToLogin,
 } from "./actions";
-
-const API = {
-  getAccessToken: async authorizationCode => {
-    const res = await fetch(`./reddit_token?code=${authorizationCode}`);
-    const data = await res.json();
-    if (!data.access_token) {
-      throw new Error();
-    }
-    return data.access_token;
-  }
-}
+import API from "./API";
 
 export function useRedditLogin() {
   const dispatch = useDispatch();

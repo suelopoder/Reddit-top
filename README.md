@@ -18,9 +18,7 @@ To run a dev version of the server run `npm run server`. This runs the server wi
 
 ## TODO
 
-- Make a first attempt to fetch reddit data from the client using the access token
-- setup redux
-- refactor client to use redux
+- refactor reducer. Split by concerns
 - implement lateral menu view
 - implement detail view
 - store/read redux data in localstorage
@@ -28,6 +26,8 @@ To run a dev version of the server run `npm run server`. This runs the server wi
 - implement read/unread feature
 - implement dismiss feature (do not store for refresh, react state?)
 - validate and refresh reddit token
+- implement pagination
+- we are assuming all /top error responses as login error, that may not be the case. Handle network issues
 
 ## Objective
 
