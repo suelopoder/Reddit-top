@@ -9,10 +9,9 @@ export function RedditContainer() {
     return <h1>{error}</h1>
   }
 
-  return (
-    <>
-      {loading && <Loading />}
-      {data && JSON.stringify(data)}
-    </>
-  );
+  if (loading && !data) {
+    return <Loading />;
+  }
+
+  return JSON.stringify(data);
 }
