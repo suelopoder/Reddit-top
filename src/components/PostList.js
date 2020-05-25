@@ -4,73 +4,83 @@ import BlueDot from './BlueDot';
 import { FaChevronRight } from 'react-icons/fa';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 
-const PostListWrapper = styled.ul`
-  padding: 0;
-  margin: 0;
-  width: 350px;
+const PostListWrapper = styled.nav`
   background: black;
-  flex: 1;
-  li {
-    background: black;
+  > h2 {
     color: white;
-    padding: 0.5rem;
-    border-bottom: 1px dashed white;
-    margin-bottom: 0.5rem;
-    header {
-      display: flex;
-      align-items: baseline;
-      h2 {
-        margin: 0 0.8rem;
-        font-size: 2rem;
+    text-align: center;
+    background-color: #212121;
+    margin: 0;
+    padding: 1rem;
+  }
+  ul {
+    padding: 0;
+    margin: 0;
+    width: 350px;
+    flex: 1;
+
+    li {
+      background: black;
+      color: white;
+      padding: 0.5rem;
+      border-bottom: 1px dashed white;
+      margin-bottom: 0.5rem;
+      header {
+        display: flex;
+        align-items: baseline;
+        h2 {
+          margin: 0 0.8rem;
+          font-size: 2rem;
+        }
+        span {
+          color: lightgray;
+          font-size: 0.8rem;
+        }
       }
-      span {
-        color: lightgray;
-        font-size: 0.8rem;
+      .post-item-content {
+        display: flex;
+        justify-content: space-between;
+        img {
+          flex: 7;
+          max-height: 150px;
+          margin: auto;
+        }
+        p {
+          flex: 7;
+          align-self: flex-start;
+          padding-left: 5px;
+        }
+        button {
+          flex: 1;
+          background: transparent;
+          border: 0;
+          color: white;
+          width: 25px;
+          padding: 0;
+        }
+        button:hover {
+          cursor: pointer;
+        }
       }
-    }
-    .post-item-content {
-      display: flex;
-      justify-content: space-between;
-      img {
-        flex: 7;
-        max-height: 150px;
-        margin: auto;
-      }
-      p {
-        flex: 7;
-        align-self: flex-start;
-        padding-left: 5px;
-      }
-      button {
-        flex: 1;
-        background: transparent;
-        border: 0;
-        color: white;
-        width: 25px;
-        padding: 0;
-      }
-      button:hover {
-        cursor: pointer;
-      }
-    }
-    footer {
-      display: flex;
-      align-items: center;
-      button {
-        background: transparent;
-        border: 0;
-        color: white;
-        font-size: 1.2rem;
-      }
-      button:hover {
-        cursor: pointer;
-      }
-      button > b {
-        color: #bc5e0e;
-        vertical-align: middle;
-      }
-      > span {
-        color: #bc5e0e;
+      footer {
+        display: flex;
+        align-items: center;
+        button {
+          background: transparent;
+          border: 0;
+          color: white;
+          font-size: 1.2rem;
+        }
+        button:hover {
+          cursor: pointer;
+        }
+        button > b {
+          color: #bc5e0e;
+          vertical-align: middle;
+        }
+        > span {
+          color: #bc5e0e;
+        }
       }
     }
   }
@@ -106,14 +116,17 @@ export function PostItem({ author, time, imgUrl, title, comments, onDismiss, onS
 export default function PostList({ posts, onDismiss, onSelect }) {
   return (
     <PostListWrapper>
-      {posts.map(post =>
-        <PostItem
-          {...post}
-          key={post.id}
-          onSelect={() => onSelect(post)}
-          onDismiss={() => onDismiss(post)}
-        />
-      )}
+      <h2>Reddit Posts</h2>
+      <ul>
+        {posts.map(post =>
+          <PostItem
+            {...post}
+            key={post.id}
+            onSelect={() => onSelect(post)}
+            onDismiss={() => onDismiss(post)}
+          />
+        )}
+      </ul>
     </PostListWrapper>
   )
 }
