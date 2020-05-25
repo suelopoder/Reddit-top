@@ -1,2 +1,2 @@
-export const selectRedditToken = state => state.redditToken;
-export const selectRedditTopData = state => state.redditTopData;
+export const selectRedditToken = state => state.login.redditToken;
+export const selectRedditData = state => state.reddit;

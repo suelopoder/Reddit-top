@@ -8,12 +8,17 @@ const API = {
     return data.access_token;
   },
   getTopPosts: async accessToken => {
+    // TODO: refactor, move uri to constants
     const res = await fetch('https://oauth.reddit.com/top', {
       headers: new Headers({ Authorization: `Bearer ${accessToken}` })
     });
 
-    if (!res.ok) {
+    if (!res.status === 401) {
       throw new Error('Invalid session');
+    }
+
+    if (!res.ok) {
+      throw new Error('Error from API');
     }
 
     const data = await res.json();

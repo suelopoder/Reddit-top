@@ -18,7 +18,7 @@ To run a dev version of the server run `npm run server`. This runs the server wi
 
 ## TODO
 
-- refactor reducer. Split by concerns
+- refactor app data. Split by concerns
 - implement lateral menu view
 - implement detail view
 - store/read redux data in localstorage
@@ -27,7 +27,8 @@ To run a dev version of the server run `npm run server`. This runs the server wi
 - implement dismiss feature (do not store for refresh, react state?)
 - validate and refresh reddit token
 - implement pagination
-- we are assuming all /top error responses as login error, that may not be the case. Handle network issues
+- add tests!
+- host the app somewhere
 
 ## Objective
 

@@ -4,7 +4,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
-import rootReducer from './reducer';
+import rootReducer from './reducers';
 
 const isDevelopment = () => process.env.NODE_ENV === 'development';
 const store = createStore(
