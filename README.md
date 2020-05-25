@@ -25,6 +25,7 @@ To run a dev version of the server run `npm run server`. This runs the server wi
 - refactor app data. Split by concerns
 - improve read/unread design
 - refactor common CSS (button, colors, spacing)
+- cleanup server code
 
 ## Objective
 
