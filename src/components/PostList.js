@@ -4,6 +4,15 @@ import BlueDot from './BlueDot';
 import { FaChevronRight } from 'react-icons/fa';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 
+const HOUR_IN_MS = 1000 * 60 * 60;
+const getCreatedTimeLabel = timeCreated => {
+  if (!timeCreated) return null;
+  const time = +new Date(timeCreated * 1000);
+  const now = +new Date();
+  const diff = Math.ceil((now - time) / HOUR_IN_MS);
+  return `${diff} hours ago`;
+}
+
 const PostListWrapper = styled.nav`
   background: black;
   > h2 {
@@ -92,7 +101,7 @@ export function PostItem({ author, time, imgUrl, title, comments, seen, onDismis
       <header>
         {!seen && <BlueDot />}
         <h2>{author}</h2>
-        <span>{time}</span>
+        <span>{getCreatedTimeLabel(time)}</span>
       </header>
       <div className="post-item-content">
         {imgUrl && <img src={imgUrl} alt={title} />}

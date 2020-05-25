@@ -6,19 +6,10 @@ const getImage = item => {
   return item.thumbnail;
 }
 
-const HOUR_IN_MS = 1000 * 60 * 60;
-const getCreatedTimeLabel = item => {
-  if (!item.created) return null;
-  const time = +new Date(item.created * 1000);
-  const now = +new Date();
-  const diff = Math.ceil((now - time) / HOUR_IN_MS);
-  return `${diff} hours ago`;
-}
-
 const apiDataMapper = item => ({
   id: item.data.id,
   author: item.data.author_fullname,
-  time: getCreatedTimeLabel(item.data),
+  time: item.data.created,
   imgUrl: getImage(item.data),
   title: item.data.title,
   comments: item.data.num_comments,
