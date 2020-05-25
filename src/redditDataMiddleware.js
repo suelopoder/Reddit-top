@@ -15,7 +15,6 @@ const redditDataMiddleware = store => next => action => {
   }
 
   const dataToPersist = selectRedditData(store.getState()).data;
-  console.log('persist', dataToPersist);
   storePosts(dataToPersist);
   return result;
 }
