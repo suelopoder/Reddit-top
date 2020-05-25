@@ -1,11 +1,11 @@
 import { TYPES } from '../actions';
+import { getPostsFromStorage } from '../helpers';
 
 const INITIAL_STATE = {
-  data: {},
+  data: getPostsFromStorage(),
   loading: false,
   error: null,
   activeId: null,
-  seen: [],
 };
 
 export default function redditDataReducer (state = INITIAL_STATE, action) {
@@ -23,7 +23,10 @@ export default function redditDataReducer (state = INITIAL_STATE, action) {
       loading: false,
       data: action.payload.reduce((posts, post) => ({
         ...posts,
-        [post.id]: post
+        [post.id]: {
+          ...posts[post.id],
+          post,
+        },
       }), state.data),
       error: null,
     }
@@ -33,7 +36,13 @@ export default function redditDataReducer (state = INITIAL_STATE, action) {
     }
     case TYPES.MARK_POST_SEEN: return {
       ...state,
-      seen: state.seen.indexOf(action.payload) > -1 ? state.seen : [...state.seen, action.payload],
+      data: {
+        ...state.data,
+        [action.payload]: {
+          ...state.data[action.payload],
+          seen: true,
+        }
+      },
     }
     default: return state;
   }

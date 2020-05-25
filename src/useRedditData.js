@@ -4,7 +4,7 @@ import _isEmpty from 'lodash/isEmpty';
 import API from './API';
 import { selectRedditToken, selectRedditData } from './selectors';
 import { redirectingToLogin, setTopData, setLoading, setError } from './actions';
-import { redirectToLogin, getPostsFromStorage, storePosts } from './helpers';
+import { redirectToLogin } from './helpers';
 
 export default function useRedditData() {
   const redditToken = useSelector(selectRedditToken);
@@ -12,21 +12,11 @@ export default function useRedditData() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const storedData = getPostsFromStorage();
-    if (storedData) {
-      dispatch(setTopData(storedData));
-    }
-  }, [dispatch])
-
-  useEffect(() => {
     if (!redditToken) return;
 
     dispatch(setLoading(true));
     API.getTopPosts(redditToken)
-      .then(data => {
-        storePosts(data);
-        dispatch(setTopData(data));
-      })
+      .then(data => { dispatch(setTopData(data)); })
       .catch(error => {
         if (error.message === 'Invalid session') {
           redirectToLogin();
