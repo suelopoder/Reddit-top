@@ -18,15 +18,12 @@ To run a dev version of the server run `npm run server`. This runs the server wi
 
 ## TODO
 
-- refactor app data. Split by concerns
-- store/read redux data in localstorage
-- make app responsive
-- implement read/unread feature
-- implement dismiss feature (do not store for refresh, react state?)
-- validate and refresh reddit token
-- implement pagination
-- add tests!
 - host the app somewhere
+- add tests!
+- make app responsive
+- implement pagination
+- refactor app data. Split by concerns
+- improve read/unread design
 - refactor common CSS (button, colors, spacing)
 
 ## Objective
