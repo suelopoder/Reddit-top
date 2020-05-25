@@ -19,8 +19,6 @@ To run a dev version of the server run `npm run server`. This runs the server wi
 ## TODO
 
 - refactor app data. Split by concerns
-- implement lateral menu view
-- implement detail view
 - store/read redux data in localstorage
 - make app responsive
 - implement read/unread feature

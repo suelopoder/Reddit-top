@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import _isEmpty from 'lodash/isEmpty';
 import API from './API';
 import { selectRedditToken, selectRedditData } from './selectors';
 import { redirectingToLogin, setTopData, setLoading, setError } from './actions';
@@ -25,5 +26,6 @@ export default function useRedditData() {
       });
   }, [redditToken, dispatch]);
 
-  return { data, loading, error };
+  const hasData = !_isEmpty(data);
+  return { data, hasData, loading, error };
 }

@@ -1,3 +1,29 @@
+import { validURL } from './helpers';
+
+const getImage = item => {
+  if (!item.thumbnail) return null;
+  if (!validURL(item.thumbnail)) return null;
+  return item.thumbnail;
+}
+
+const HOUR_IN_MS = 1000 * 60 * 60;
+const getCreatedTimeLabel = item => {
+  if (!item.created) return null;
+  const time = +new Date(item.created * 1000);
+  const now = +new Date();
+  const diff = Math.ceil((now - time) / HOUR_IN_MS);
+  return `${diff} hours ago`;
+}
+
+const apiDataMapper = item => ({
+  id: item.data.id,
+  author: item.data.author_fullname,
+  time: getCreatedTimeLabel(item.data),
+  imgUrl: getImage(item.data),
+  title: item.data.title,
+  comments: item.data.num_comments,
+});
+
 const API = {
   getAccessToken: async authorizationCode => {
     const res = await fetch(`./reddit_token?code=${authorizationCode}`);
@@ -22,7 +48,7 @@ const API = {
     }
 
     const data = await res.json();
-    return data.data.children.map(item => item.data);
+    return data.data.children.map(apiDataMapper);
   }
 }
 

@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import PostList from './PostList';
 import PostDetail from './PostDetail';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectPost } from '../actions';
-import { selectActivePost } from '../selectors';
+import { selectPost, markPostAsSeen } from '../actions';
+import { selectActivePost, redditPostsSelector } from '../selectors';
 
 const MainWrapper = styled.div`
   > *:nth-child(1) {
@@ -20,7 +20,8 @@ const MainWrapper = styled.div`
   }
 `;
 
-export default function Main({ posts }) {
+export default function Main() {
+  const posts = useSelector(redditPostsSelector);
   const dispatch = useDispatch();
   const activeId = useSelector(selectActivePost);
   const activePost = activeId && posts.find(item => item.id === activeId);
@@ -30,7 +31,10 @@ export default function Main({ posts }) {
       <PostList
         posts={posts}
         onDismiss={console.log}
-        onSelect={post => { dispatch(selectPost(post.id)); }}
+        onSelect={post => {
+          dispatch(markPostAsSeen(post.id));
+          dispatch(selectPost(post.id));
+        }}
       />;
       <PostDetail post={activePost} />
     </MainWrapper>

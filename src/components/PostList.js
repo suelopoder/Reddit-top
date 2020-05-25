@@ -86,11 +86,11 @@ const PostListWrapper = styled.nav`
   }
 `
 
-export function PostItem({ author, time, imgUrl, title, comments, onDismiss, onSelect }) {
+export function PostItem({ author, time, imgUrl, title, comments, seen, onDismiss, onSelect }) {
   return (
     <li>
       <header>
-        <BlueDot />
+        {!seen && <BlueDot />}
         <h2>{author}</h2>
         <span>{time}</span>
       </header>

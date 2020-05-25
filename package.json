@@ -38,9 +38,11 @@
     ]
   },
   "devDependencies": {
+    "lodash": "^4.17.15",
     "react-icons": "^3.10.0",
     "react-redux": "^7.2.0",
     "redux": "^4.0.5",
+    "reselect": "^4.0.0",
     "styled-components": "^5.1.0"
   }
 }

@@ -5,6 +5,7 @@ export const TYPES = {
   SET_REDDIT_TOP_DATA_LOADING: 'SET_REDDIT_TOP_DATA_LOADING',
   SET_REDDIT_TOP_DATA_ERROR: 'SET_REDDIT_TOP_DATA_ERROR',
   SET_SELECTED_POST: 'SET_SELECTED_POST',
+  MARK_POST_SEEN: 'MARK_POST_SEEN',
 };
 
 export const setRedditToken = token => ({ type: TYPES.SET_REDDIT_TOKEN, token });
@@ -15,3 +16,4 @@ export const setLoading = payload => ({ type: TYPES.SET_REDDIT_TOP_DATA_LOADING,
 export const setError = payload => ({ type: TYPES.SET_REDDIT_TOP_DATA_ERROR, payload });
 
 export const selectPost = payload => ({ type: TYPES.SET_SELECTED_POST, payload });
+export const markPostAsSeen = payload => ({ type: TYPES.MARK_POST_SEEN, payload })
