@@ -21,7 +21,6 @@ To run a dev version of the server run `npm run server`. This runs the server wi
 - add dismiss all button
 - add animation on dismiss
 - add tests!
-- make app responsive
 - implement pagination
 - refactor app data. Split by concerns
 - improve read/unread design
