@@ -24,3 +24,12 @@ export function validURL(str) {
     '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
   return !!pattern.test(str);
 }
+
+const HOUR_IN_MS = 1000 * 60 * 60;
+export const getCreatedTimeLabel = timeCreated => {
+  if (!timeCreated) return null;
+  const time = +new Date(timeCreated * 1000);
+  const now = +new Date();
+  const diff = Math.ceil((now - time) / HOUR_IN_MS);
+  return `${diff} hours ago`;
+}
