@@ -31,6 +31,16 @@ const PostListContainer = styled.nav`
     margin: 0;
     padding: ${SPACING.MEDIUM};
   }
+  .more {
+    width: 100%;
+    font-size: 2rem;
+    color: white;
+    padding: 0.5rem;
+    background-color: #1a1a1a;
+    :hover {
+      background-color: #454545;
+    }
+  }
   @media (max-width: ${MOBILE_MAX_SIZE}) {
     > h2 {
       display: ${props => props.expanded ? 'block' : 'none'};
@@ -39,7 +49,7 @@ const PostListContainer = styled.nav`
     width: ${props => props.expanded ? EXPANDED_PANEL_SIZE : COLLAPSED_PANEL_SIZE};
     transition: width .3s ease;
     z-index: 1;
-    > button {
+    &.arrow {
       display: block;
       height: 100%;
       width: ${COLLAPSED_PANEL_SIZE};
@@ -48,7 +58,15 @@ const PostListContainer = styled.nav`
   }
 `
 
-export default function PostList({ posts, onDismiss, onSelect, expanded, onExpandToogle }) {
+export default function PostList({
+  posts,
+  onDismiss,
+  onSelect,
+  expanded,
+  onExpandToogle,
+  onLoadMore,
+  loadingMore,
+}) {
   return (
     <PostListContainer expanded={expanded}>
       <h2>Reddit Posts</h2>
@@ -62,7 +80,10 @@ export default function PostList({ posts, onDismiss, onSelect, expanded, onExpan
           />
         )}
       </PostListElement>
-      {!expanded && <Button onClick={onExpandToogle}><FaChevronRight /></Button>}
+      <Button onClick={onLoadMore} className="more">
+        {loadingMore ? 'Loading...' : 'Load More'}
+      </Button>
+      {!expanded && <Button onClick={onExpandToogle} className="arrow"><FaChevronRight /></Button>}
     </PostListContainer>
   )
 }

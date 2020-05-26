@@ -4,10 +4,10 @@ import Loading from './components/Loading';
 import Main from './components/Main';
 
 export function RedditContainer() {
-  const { hasData, loading, error } = useRedditData();
+  const { hasData, loading, error, loadMore } = useRedditData();
 
   if (hasData) {
-    return <Main />;
+    return <Main loadingData={loading} onLoadMore={loadMore} />;
   }
 
   if (error) {

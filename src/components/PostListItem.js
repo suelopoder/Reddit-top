@@ -67,6 +67,9 @@ const PostListItemElem = styled.li`
   &.dismissable {
     opacity: 0;
   }
+  :last-child{
+    margin-bottom: 0;
+  }
 `
 
 export default function PostListItem({ author, time, imgUrl, title, comments, seen, onDismiss, onSelect }) {

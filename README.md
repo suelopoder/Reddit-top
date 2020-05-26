@@ -19,7 +19,6 @@ To run a dev version of the server run `npm run server`. This runs the server wi
 ## TODO
 
 - add dismiss all button
-- implement pagination
 - add tests!
 - cleanup server code
 
@@ -71,3 +70,11 @@ Data is stored by keys so when new data arrives old data is updated and new data
 ### Accesibility
 
 Some elements are intentionally left with an outline for accesibility reasons. Examples are the dismiss button and the arrow to present main content. Try navigating the app with tabs.
+
+### Pagination
+
+After loading multiple pages the DOM can get quite big. To clear data from storage run this on browser console: `localStorage.removeItem('REDDIT_CLIENT__REDDIT_POSTS')`
+
+Please consider that posts under `/top` are not sorted by chronologically so the "hours ago" may look weird.
+
+Also, when reloading the app we start loading pages from the start again. This may feel strange when you have quite some data stored, but it's intentional so we refresh that data.

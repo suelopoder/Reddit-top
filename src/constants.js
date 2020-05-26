@@ -17,3 +17,6 @@ export const SPACING = {
 export const COLLAPSED_PANEL_SIZE = '30px';
 export const EXPANDED_PANEL_SIZE = '350px';
 export const MOBILE_MAX_SIZE = '500px';
+
+export const REDDIT_API_URI = 'https://oauth.reddit.com';
+export const TOP_ENDPOINT = '/top';

@@ -1,4 +1,5 @@
 import { validURL } from './helpers';
+import { REDDIT_API_URI, TOP_ENDPOINT } from './constants';
 
 const getImage = item => {
   if (!item.thumbnail) return null;
@@ -24,9 +25,11 @@ const API = {
     }
     return data.access_token;
   },
-  getTopPosts: async accessToken => {
+  getTopPosts: async (accessToken, next = null) => {
     // TODO: refactor, move uri to constants
-    const res = await fetch('https://oauth.reddit.com/top', {
+    const baseUrl = `${REDDIT_API_URI}${TOP_ENDPOINT}`;
+    const url = next ? `${baseUrl}?after=${next}` : baseUrl;
+    const res = await fetch(url, {
       headers: new Headers({ Authorization: `Bearer ${accessToken}` })
     });
 
@@ -39,7 +42,10 @@ const API = {
     }
 
     const data = await res.json();
-    return data.data.children.map(apiDataMapper);
+    return {
+      data: data.data.children.map(apiDataMapper),
+      next: data.data.after,
+    }
   }
 }
 

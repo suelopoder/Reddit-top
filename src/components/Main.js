@@ -8,9 +8,7 @@ import { selectActivePost, redditPostsSelector } from '../selectors';
 
 const MainWrapper = styled.div``;
 
-const sortFx = (a, b) => b.time - a.time;
-
-export default function Main() {
+export default function Main({ loadingData, onLoadMore }) {
   const posts = useSelector(redditPostsSelector);
   const [dismissed, setDismissed] = useState([]);
   const [menuExpanded, setMenuExpanded] = useState(true);
@@ -22,7 +20,7 @@ export default function Main() {
   return (
     <MainWrapper>
       <PostList
-        posts={shownPosts.sort(sortFx)}
+        posts={shownPosts}
         onDismiss={post => {
           if (post.id === activeId) {
             dispatch(selectPost(null));
@@ -36,6 +34,8 @@ export default function Main() {
         }}
         expanded={menuExpanded}
         onExpandToogle={() => setMenuExpanded(!menuExpanded)}
+        onLoadMore={onLoadMore}
+        loadingMore={loadingData}
       />
       <PostDetail post={activePost} />
     </MainWrapper>
