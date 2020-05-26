@@ -45,7 +45,7 @@ const Footer = styled.footer`
   display: flex;
   align-items: center;
   button {
-    color: white;
+    color: inherit;
     font-size: ${SPACING.LARGE};
   }
   button > b {
@@ -59,7 +59,8 @@ const Footer = styled.footer`
 
 const PostListItemElem = styled.li`
   background: black;
-  color: white;
+  color: ${props => props.seen ? '#858585' : 'white'};
+  transition: color .3s ease;
   padding: 0.5rem;
   border-bottom: 1px dashed white;
   margin-bottom: 0.5rem;
@@ -67,7 +68,7 @@ const PostListItemElem = styled.li`
 
 export default function PostListItem({ author, time, imgUrl, title, comments, seen, onDismiss, onSelect }) {
   return (
-    <PostListItemElem onClick={onSelect}>
+    <PostListItemElem onClick={onSelect} seen={seen}>
       <Header>
         {!seen && <BlueDot />}
         <h2>{author}</h2>
