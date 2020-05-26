@@ -14,6 +14,23 @@ const PostListElement = styled.ul`
   }
 `
 
+const FooterButton = styled(Button)`
+  width: calc(100% - 10px);
+  font-size: 2rem;
+  color: white;
+  padding: 0.5rem;
+  background-color: #1a1a1a;
+  border: 1px solid;
+  box-sizing: border-box;
+  margin: 5px;
+  :hover {
+    background-color: #454545;
+  }
+  @media (max-width: ${MOBILE_MAX_SIZE}) {
+    display: ${props => props.expanded ? 'block' : 'none'}
+  }
+`
+
 const PostListContainer = styled.nav`
   background: black;
   position: fixed;
@@ -39,35 +56,21 @@ const PostListContainer = styled.nav`
     width: ${props => props.expanded ? EXPANDED_PANEL_SIZE : COLLAPSED_PANEL_SIZE};
     transition: width .3s ease;
     z-index: 1;
+    ${FooterButton} {
+      display: ${props => props.expanded ? 'block' : 'none'};
+    }
     .arrow {
       display: block;
-      height: 100%;
-      width: ${COLLAPSED_PANEL_SIZE};
       color: white;
+      height: 100%;
     }
-  }
-`
-
-const FooterButton = styled(Button)`
-  width: calc(100% - 10px);
-  font-size: 2rem;
-  color: white;
-  padding: 0.5rem;
-  background-color: #1a1a1a;
-  border: 1px solid;
-  box-sizing: border-box;
-  margin: 5px;
-  :hover {
-    background-color: #454545;
-  }
-  @media (max-width: ${MOBILE_MAX_SIZE}) {
-    display: ${props => props.expanded ? 'block' : 'none'}
   }
 `
 
 export default function PostList({
   posts,
   onDismiss,
+  onDismissAll,
   onSelect,
   expanded,
   onExpandToogle,
@@ -88,7 +91,7 @@ export default function PostList({
         )}
       </PostListElement>
       {posts.length &&
-        <FooterButton onClick={() => console.log('Dimiss all')}>
+        <FooterButton onClick={onDismissAll}>
           Dismiss All
         </FooterButton>
       }

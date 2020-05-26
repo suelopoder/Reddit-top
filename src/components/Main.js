@@ -27,6 +27,10 @@ export default function Main({ loadingData, onLoadMore }) {
           }
           setDismissed([...dismissed, post.id])
         }}
+        onDismissAll={() => {
+          dispatch(selectPost(null));
+          setDismissed(posts.map(post => post.id));
+        }}
         onSelect={post => {
           dispatch(markPostAsSeen(post.id));
           dispatch(selectPost(post.id));
