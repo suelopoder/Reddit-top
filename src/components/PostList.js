@@ -31,19 +31,6 @@ const PostListContainer = styled.nav`
     margin: 0;
     padding: ${SPACING.MEDIUM};
   }
-  .more {
-    width: 100%;
-    font-size: 2rem;
-    color: white;
-    padding: 0.5rem;
-    background-color: #1a1a1a;
-    :hover {
-      background-color: #454545;
-    }
-    @media (max-width: ${MOBILE_MAX_SIZE}) {
-      display: ${props => props.expanded ? 'block' : 'none'}
-    }
-  }
   @media (max-width: ${MOBILE_MAX_SIZE}) {
     > h2 {
       display: ${props => props.expanded ? 'block' : 'none'};
@@ -58,6 +45,20 @@ const PostListContainer = styled.nav`
       width: ${COLLAPSED_PANEL_SIZE};
       color: white;
     }
+  }
+`
+
+const LoadMoreButton = styled(Button)`
+  width: 100%;
+  font-size: 2rem;
+  color: white;
+  padding: 0.5rem;
+  background-color: #1a1a1a;
+  :hover {
+    background-color: #454545;
+  }
+  @media (max-width: ${MOBILE_MAX_SIZE}) {
+    display: ${props => props.expanded ? 'block' : 'none'}
   }
 `
 
@@ -83,9 +84,9 @@ export default function PostList({
           />
         )}
       </PostListElement>
-      <Button onClick={onLoadMore} className="more">
+      <LoadMoreButton onClick={onLoadMore} disabled={loadingMore}>
         {loadingMore ? 'Loading...' : 'Load More'}
-      </Button>
+      </LoadMoreButton>
       {!expanded && <Button onClick={onExpandToogle} className="arrow"><FaChevronRight /></Button>}
     </PostListContainer>
   )
