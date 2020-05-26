@@ -36,6 +36,10 @@ This app uses reddit oauth API. So for a first use you need to authorize reddit 
 
 For the first render we are forced to send the user though login because there is no data to show. For a second visit we have some data to hidrate, however we can or not send them though login on background data fetch error. I decided to send the user to login or else this is an unrecoverable state. That is, once you have stored data and token expired, there is no functionality to login again. This could be easily changed by checking data on store before sending to login.
 
+### Handling secrets
+
+Reddit app data is not public so its not commited to the repo nor served to the client side. This data can be configured in `.env` file.
+
 ### Hosting
 
 App is hosted in <http://ec2-3-16-76-129.us-east-2.compute.amazonaws.com/> I went for AWS EC2 as I am familiar with the UI and a simple server is included on AWS free tier.
