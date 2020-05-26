@@ -23,7 +23,12 @@ export default function Main() {
     <MainWrapper>
       <PostList
         posts={shownPosts.sort(sortFx)}
-        onDismiss={post => setDismissed([...dismissed, post.id])}
+        onDismiss={post => {
+          if (post.id === activeId) {
+            dispatch(selectPost(null));
+          }
+          setDismissed([...dismissed, post.id])
+        }}
         onSelect={post => {
           dispatch(markPostAsSeen(post.id));
           dispatch(selectPost(post.id));
