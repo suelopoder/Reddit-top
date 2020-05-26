@@ -20,6 +20,7 @@ To run a dev version of the server run `npm run server`. This runs the server wi
 
 - add dismiss all button
 - add tests!
+- add proptypes
 - cleanup server code
 
 ## Notes
