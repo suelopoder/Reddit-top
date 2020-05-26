@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { FaChevronRight } from 'react-icons/fa';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
@@ -60,15 +60,30 @@ const Footer = styled.footer`
 const PostListItemElem = styled.li`
   background: black;
   color: ${props => props.seen ? '#858585' : 'white'};
-  transition: color .3s ease;
+  transition: color .3s ease, opacity 1s ease;
   padding: 0.5rem;
   border-bottom: 1px dashed white;
   margin-bottom: 0.5rem;
+  &.dismissable {
+    opacity: 0;
+  }
 `
 
 export default function PostListItem({ author, time, imgUrl, title, comments, seen, onDismiss, onSelect }) {
+  const dismissTimeoutRef = useRef(false);
+  const elemRef = useRef(null);
+
+  useEffect(() => {
+    return () => { clearTimeout(dismissTimeoutRef.current); }
+  });
+
+  function onDismissClick() {
+    elemRef.current.classList.toggle('dismissable');
+    dismissTimeoutRef.current = setTimeout(onDismiss, 800);
+  }
+
   return (
-    <PostListItemElem seen={seen}>
+    <PostListItemElem seen={seen} ref={elemRef}>
       <Header>
         {!seen && <BlueDot />}
         <h2>{author}</h2>
@@ -81,7 +96,7 @@ export default function PostListItem({ author, time, imgUrl, title, comments, se
       </Content>
       <Footer>
         {onDismiss && (
-          <Button onClick={onDismiss}>
+          <Button onClick={onDismissClick}>
             <b><AiOutlineCloseCircle /></b>
             &nbsp;
             <span>Dismiss Post</span>
