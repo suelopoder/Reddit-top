@@ -68,13 +68,13 @@ const PostListItemElem = styled.li`
 
 export default function PostListItem({ author, time, imgUrl, title, comments, seen, onDismiss, onSelect }) {
   return (
-    <PostListItemElem onClick={onSelect} seen={seen}>
+    <PostListItemElem seen={seen}>
       <Header>
         {!seen && <BlueDot />}
         <h2>{author}</h2>
         <span>{getCreatedTimeLabel(time)}</span>
       </Header>
-      <Content>
+      <Content onClick={onSelect}>
         {imgUrl && <img src={imgUrl} alt={title} />}
         <p>{title}</p>
         <Button onClick={onSelect}><FaChevronRight /></Button>
