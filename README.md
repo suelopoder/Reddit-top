@@ -18,6 +18,8 @@ To run a dev version of the server run `npm run server`. This runs the server wi
 
 ## TODO
 
+- add dismiss all button
+- add animation on dismiss
 - add tests!
 - make app responsive
 - implement pagination
@@ -27,59 +29,39 @@ To run a dev version of the server run `npm run server`. This runs the server wi
 - cleanup server code
 - decide if I should redirect to login if there is data in localstorage
 
-## Objective
+## Notes
 
-We would like to have you complete the following code test so we can evaluate your Front-end skills.  Please place your code in a public Github repository and commit each step of your process so we can review it.
+### Login
 
-Your assignment is to create a simple Reddit client that shows the top 50 entries from Reddit - www.reddit.com/top
+This app uses reddit oauth API. So for a first use you need to authorize reddit to provide data for the app. In order to do that the app redirects to reddit authorize page. Then reddit redirects back with an authorization code. The app clears that authorization code from the url for security reasons.
 
-## Show your work
+For the first render we are forced to send the user though login because there is no data to show. For a second visit we have some data to hidrate, however we can or not send them though login on background data fetch error. I decided to send the user to login or else this is an unrecoverable state. That is, once you have stored data and token expired, there is no functionality to login again. This could be easily changed by checking data on store before sending to login.
 
-1. Create a Public repository
-2. Commit each step of your process so we can follow your thought process.
+### Hosting
 
-## What to show
+App is hosted in <http://ec2-3-16-76-129.us-east-2.compute.amazonaws.com/> I went for AWS EC2 as I am familiar with the UI and a simple server is included on AWS free tier.
 
-To do this please follow these guidelines and use the front-end technology we talked about during your interview (Specific Javascript Framework).  If you are using ReactJS, you must incorporate Redux.
+### Deployment
 
-The app should be able to show data from each entry such as:
+Deployment is done manually by loggin into a server and:
 
-    - Title (at its full length, so take this into account when sizing your cells)
-    - Author
-    - entry date, following a format like “x hours ago”
-    - A thumbnail for those who have a picture.
-    - Number of comments
-    - Unread status
+- configuring `.env` file
+- running `npm i`
+- running `npm run build`
+- running `npm start`
 
-In addition, for those having a picture (besides the thumbnail), please allow the user to tap on the thumbnail to be sent to the full sized picture.
+You can set the `SERVER_PORT` variable in `.env` to change the default port (3001)
 
-## What to Include
+This process can be improved by dockerizing the app.
 
-    - Pagination support
-    - Saving pictures in the picture gallery
-    - App state-preservation/restoration
-    - Indicator of unread/read post (updated status, after post it’s selected)
-    - Dismiss Post Button (remove the cell from list. Animations required)
-    - Dismiss All Button (remove all posts. Animations required)
-    - Support split layout (left side: all posts / right side: detail post)
-    - Responsive design
+### Data sotorage
 
-## Resources
+Data is stored using localstorage. I could have used cookies but I though this was a simpler yet functional approach.
 
-    - Reddit API - http://www.reddit.com/dev/api
-    - Example JSON file (top.json) is listed.
-    - Example Video of functionality is attached
+### Performing API calls
 
-## Deliverables we expect
+I went for a React hooks approach, dispatching actions there. An alternative would have been using a redux middleware. I decide the hook approach was a better fit.
 
-* URL where the game can be accessed and played (use any platform of your preference: heroku.com, aws.amazon.com, etc)
-* Code in a public Github repo
-* README file with the decisions taken and important notes
+### `redditDataMiddleware` middleware
 
-## Time Spent
-
-You need to fully complete the challenge. We suggest not to spend more than 5 days total.  Please make commits as often as possible so we can see the time you spent and please do not make one commit.  We will evaluate the code and time spent.
-
-What we want to see is how well you handle yourself given the time you spend on the problem, how you think, and how you prioritize when time is sufficient to solve everything.
-
-Please email your solution as soon as you have completed the challenge or the time is up.
+I noticed storing reddit posts and seen data become a bit dirty on the code, so I decided to build a small middleware that watches for some actions and stores the data.
