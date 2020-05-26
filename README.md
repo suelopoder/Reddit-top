@@ -65,3 +65,8 @@ I went for a React hooks approach, dispatching actions there. An alternative wou
 ### `redditDataMiddleware` middleware
 
 I noticed storing reddit posts and seen data become a bit dirty on the code, so I decided to build a small middleware that watches for some actions and stores the data.
+
+### Data reload
+
+Data is stored by keys so when new data arrives old data is updated and new data is added to the list.
+
