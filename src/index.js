@@ -7,12 +7,11 @@ import App from './App';
 import rootReducer from './reducers';
 import redditDataMiddleware from './redditDataMiddleware';
 
-const isDevelopment = () => process.env.NODE_ENV === 'development';
 const store = createStore(
   rootReducer,
   compose(
     applyMiddleware(redditDataMiddleware),
-    isDevelopment() && window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
 );
 
