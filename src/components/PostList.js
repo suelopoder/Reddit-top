@@ -48,12 +48,15 @@ const PostListContainer = styled.nav`
   }
 `
 
-const LoadMoreButton = styled(Button)`
-  width: 100%;
+const FooterButton = styled(Button)`
+  width: calc(100% - 10px);
   font-size: 2rem;
   color: white;
   padding: 0.5rem;
   background-color: #1a1a1a;
+  border: 1px solid;
+  box-sizing: border-box;
+  margin: 5px;
   :hover {
     background-color: #454545;
   }
@@ -84,9 +87,14 @@ export default function PostList({
           />
         )}
       </PostListElement>
-      <LoadMoreButton onClick={onLoadMore} disabled={loadingMore}>
+      {posts.length &&
+        <FooterButton onClick={() => console.log('Dimiss all')}>
+          Dismiss All
+        </FooterButton>
+      }
+      <FooterButton onClick={onLoadMore} disabled={loadingMore}>
         {loadingMore ? 'Loading...' : 'Load More'}
-      </LoadMoreButton>
+      </FooterButton>
       {!expanded && <Button onClick={onExpandToogle} className="arrow"><FaChevronRight /></Button>}
     </PostListContainer>
   )

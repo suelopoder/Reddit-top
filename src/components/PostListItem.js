@@ -67,8 +67,9 @@ const PostListItemElem = styled.li`
   &.dismissable {
     opacity: 0;
   }
-  :last-child{
+  :last-child {
     margin-bottom: 0;
+    border-bottom: 0;
   }
 `
 
