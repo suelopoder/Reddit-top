@@ -19,14 +19,9 @@ To run a dev version of the server run `npm run server`. This runs the server wi
 ## TODO
 
 - add dismiss all button
-- add animation on dismiss
-- add tests!
 - implement pagination
-- refactor app data. Split by concerns
-- improve read/unread design
-- refactor common CSS (button, colors, spacing)
+- add tests!
 - cleanup server code
-- decide if I should redirect to login if there is data in localstorage
 
 ## Notes
 
