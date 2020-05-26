@@ -6,19 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectPost, markPostAsSeen } from '../actions';
 import { selectActivePost, redditPostsSelector } from '../selectors';
 
-const MainWrapper = styled.div`
-  > *:nth-child(1) {
-    position: fixed;
-    width: 350px;
-    overflow-y: scroll;
-    top: 0;
-    bottom: 0;
-  }
-  > *:nth-child(2) {
-    position: relative;
-    margin-left: 350px;
-  }
-`;
+const MainWrapper = styled.div``;
 
 const sortFx = (a, b) => b.time - a.time;
 
@@ -39,7 +27,7 @@ export default function Main() {
           dispatch(markPostAsSeen(post.id));
           dispatch(selectPost(post.id));
         }}
-      />;
+      />
       <PostDetail post={activePost} />
     </MainWrapper>
   );

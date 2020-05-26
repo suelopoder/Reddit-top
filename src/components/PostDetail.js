@@ -5,6 +5,8 @@ const PostDetailWrapper = styled.main`
   flex: 2;
   margin: 1rem;
   div { text-align: center; }
+  position: relative;
+  margin-left: 350px;
 `;
 
 export default function PostDetail({ post }) {
