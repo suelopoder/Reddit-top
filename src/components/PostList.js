@@ -40,6 +40,9 @@ const PostListContainer = styled.nav`
     :hover {
       background-color: #454545;
     }
+    @media (max-width: ${MOBILE_MAX_SIZE}) {
+      display: ${props => props.expanded ? 'block' : 'none'}
+    }
   }
   @media (max-width: ${MOBILE_MAX_SIZE}) {
     > h2 {
@@ -49,7 +52,7 @@ const PostListContainer = styled.nav`
     width: ${props => props.expanded ? EXPANDED_PANEL_SIZE : COLLAPSED_PANEL_SIZE};
     transition: width .3s ease;
     z-index: 1;
-    &.arrow {
+    .arrow {
       display: block;
       height: 100%;
       width: ${COLLAPSED_PANEL_SIZE};
