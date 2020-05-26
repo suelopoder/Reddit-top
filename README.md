@@ -67,5 +67,5 @@ I noticed storing reddit posts and seen data become a bit dirty on the code, so 
 
 ### Data reload
 
-Data is stored by keys so when new data arrives old data is updated and new data is added to the list.
+Data is stored by keys so when new data arrives old data is updated and new data is added to the list. We could improve the functionality by polling data on interval or subscribing to a live endpoint.
 
