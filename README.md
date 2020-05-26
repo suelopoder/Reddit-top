@@ -68,3 +68,6 @@ I noticed storing reddit posts and seen data become a bit dirty on the code, so 
 
 Data is stored by keys so when new data arrives old data is updated and new data is added to the list. We could improve the functionality by polling data on interval or subscribing to a live endpoint.
 
+### Accesibility
+
+Some elements are intentionally left with an outline for accesibility reasons. Examples are the dismiss button and the arrow to present main content. Try navigating the app with tabs.
