@@ -18,7 +18,6 @@ To run a dev version of the server run `npm run server`. This runs the server wi
 
 ## TODO
 
-- host the app somewhere
 - add tests!
 - make app responsive
 - implement pagination
@@ -26,6 +25,7 @@ To run a dev version of the server run `npm run server`. This runs the server wi
 - improve read/unread design
 - refactor common CSS (button, colors, spacing)
 - cleanup server code
+- decide if I should redirect to login if there is data in localstorage
 
 ## Objective
 

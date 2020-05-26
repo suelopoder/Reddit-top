@@ -9,7 +9,7 @@ const getImage = item => {
 const apiDataMapper = item => ({
   id: item.data.id,
   author: item.data.author_fullname,
-  time: item.data.created,
+  time: item.data.created_utc,
   imgUrl: getImage(item.data),
   title: item.data.title,
   comments: item.data.num_comments,

@@ -20,17 +20,20 @@ const MainWrapper = styled.div`
   }
 `;
 
+const sortFx = (a, b) => b.time - a.time;
+
 export default function Main() {
   const posts = useSelector(redditPostsSelector);
   const [dismissed, setDismissed] = useState([]);
   const dispatch = useDispatch();
   const activeId = useSelector(selectActivePost);
   const activePost = activeId && posts.find(item => item.id === activeId);
+  const shownPosts = posts.filter(post => dismissed.indexOf(post.id) === -1);
 
   return (
     <MainWrapper>
       <PostList
-        posts={posts.filter(post => dismissed.indexOf(post.id) === -1)}
+        posts={shownPosts.sort(sortFx)}
         onDismiss={post => setDismissed([...dismissed, post.id])}
         onSelect={post => {
           dispatch(markPostAsSeen(post.id));
