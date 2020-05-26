@@ -13,6 +13,7 @@ const sortFx = (a, b) => b.time - a.time;
 export default function Main() {
   const posts = useSelector(redditPostsSelector);
   const [dismissed, setDismissed] = useState([]);
+  const [menuExpanded, setMenuExpanded] = useState(true);
   const dispatch = useDispatch();
   const activeId = useSelector(selectActivePost);
   const activePost = activeId && posts.find(item => item.id === activeId);
@@ -26,7 +27,10 @@ export default function Main() {
         onSelect={post => {
           dispatch(markPostAsSeen(post.id));
           dispatch(selectPost(post.id));
+          setMenuExpanded(false)
         }}
+        expanded={menuExpanded}
+        onExpandToogle={() => setMenuExpanded(!menuExpanded)}
       />
       <PostDetail post={activePost} />
     </MainWrapper>
