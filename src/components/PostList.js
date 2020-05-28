@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { FaChevronRight } from 'react-icons/fa';
 import PostListItem from './PostListItem';
@@ -9,6 +9,10 @@ const PostListElement = styled.ul`
   padding: 0;
   margin: 60px 0 0 0;
   flex: 1;
+  transition: opacity 1s ease;
+  &.dismissable {
+    opacity: 0;
+  }
   @media (max-width: ${MOBILE_MAX_SIZE}) {
     display: ${props => props.expanded ? 'block' : 'none'}
   }
@@ -39,6 +43,7 @@ const PostListContainer = styled.nav`
   top: 0;
   bottom: 0;
   > h2 {
+    z-index: 1;
     position: fixed;
     box-sizing: border-box;
     width: ${EXPANDED_PANEL_SIZE};
@@ -77,10 +82,22 @@ export default function PostList({
   onLoadMore,
   loadingMore,
 }) {
+  const dismissTimeoutRef = useRef(false);
+  const listRef = useRef(null);
+
+  useEffect(() => {
+    return () => { clearTimeout(dismissTimeoutRef.current); }
+  });
+
+  function onDismissAllClick() {
+    listRef.current.classList.toggle('dismissable');
+    dismissTimeoutRef.current = setTimeout(onDismissAll, 800);
+  }
+
   return (
     <PostListContainer expanded={expanded}>
       <h2>Reddit Posts</h2>
-      <PostListElement expanded={expanded}>
+      <PostListElement expanded={expanded} ref={listRef}>
         {posts.map(post =>
           <PostListItem
             {...post}
@@ -91,7 +108,7 @@ export default function PostList({
         )}
       </PostListElement>
       {posts.length &&
-        <FooterButton onClick={onDismissAll}>
+        <FooterButton onClick={onDismissAllClick}>
           Dismiss All
         </FooterButton>
       }
