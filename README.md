@@ -18,10 +18,11 @@ To run a dev version of the server run `npm run server`. This runs the server wi
 
 ## TODO
 
-- add dismiss all button
 - add tests!
 - add proptypes
 - cleanup server code
+- cleanup CSS in post list
+- refactor animation code to be shared
 
 ## Notes
 
