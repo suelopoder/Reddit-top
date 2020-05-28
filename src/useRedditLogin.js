@@ -34,5 +34,6 @@ export function useRedditLogin() {
     dispatch(setRedditToken(token));
   }, [dispatch]);
 
-  return { loginStatus: useSelector(state => state.loginStatus) };
+  const loginStatus = useSelector(state => state.login.loginStatus);
+  return { loginStatus };
 }
