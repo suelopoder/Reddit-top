@@ -26,7 +26,6 @@ const API = {
     return data.access_token;
   },
   getTopPosts: async (accessToken, next = null) => {
-    // TODO: refactor, move uri to constants
     const baseUrl = `${REDDIT_API_URI}${TOP_ENDPOINT}`;
     const url = next ? `${baseUrl}?after=${next}` : baseUrl;
     const res = await fetch(url, {
