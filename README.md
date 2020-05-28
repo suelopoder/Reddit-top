@@ -18,7 +18,8 @@ To run a dev version of the server run `npm run server`. This runs the server wi
 
 ## TODO
 
-- add tests!
+As every project this one has room for improvement. Some stuff from that list:
+
 - add proptypes
 - cleanup server code
 - cleanup CSS in post list
@@ -35,6 +36,10 @@ For the first render we are forced to send the user though login because there i
 ### Handling secrets
 
 Reddit app data is not public so its not commited to the repo nor served to the client side. This data can be configured in `.env` file.
+
+### Testing
+
+Testing is a very important topic for me. It was not requested though, so I added some test to example some tests.
 
 ### Hosting
 
@@ -80,3 +85,7 @@ After loading multiple pages the DOM can get quite big. To clear data from stora
 Please consider that posts under `/top` are not sorted by chronologically so the "hours ago" may look weird.
 
 Also, when reloading the app we start loading pages from the start again. This may feel strange when you have quite some data stored, but it's intentional so we refresh that data.
+
+### React hooks vs async actions
+
+For side effects I went for a React hooks approach instead of an async redux actions. The reason for that is that react hooks are newer and in a simple project they probably make more sense. If I were to rebuild this I would use the later since they seem a better fir for redux itself.
