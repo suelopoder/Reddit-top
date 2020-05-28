@@ -20,9 +20,11 @@ export default function PostDetail({ post }) {
   return (
     <PostDetailWrapper>
       <h1>{author}</h1>
-      <div>
-        <img src={imgUrl} alt={title} />
-      </div>
+      {imgUrl && (
+        <div>
+          <img src={imgUrl} alt={title} />
+        </div>
+      )}
       <p>{title}</p>
     </PostDetailWrapper>
   )
