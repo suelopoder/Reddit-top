@@ -31,5 +31,8 @@ export const getCreatedTimeLabel = timeCreated => {
   const time = +new Date(timeCreated * 1000);
   const now = +new Date();
   const diff = Math.ceil((now - time) / HOUR_IN_MS);
+  if (diff <= 1) {
+    return '1 hour ago';
+  }
   return `${diff} hours ago`;
 }
