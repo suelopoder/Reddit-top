@@ -1,6 +1,6 @@
 # Front-end Test
 
-Working version at http://ec2-3-16-76-129.us-east-2.compute.amazonaws.com/
+Working version at <http://ec2-3-16-76-129.us-east-2.compute.amazonaws.com/>
 
 ## About
 
